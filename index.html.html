@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NIVORA DESIGNZ — Architecture &amp; Interior Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#17140F;
+    --ink-soft:#2B2620;
+    --paper:#EDE7D8;
+    --paper-dim:#DDD5C0;
+    --brass:#AD8A4E;
+    --brass-soft:#C9AD7C;
+    --concrete:#8D8778;
+    --line:rgba(237,231,216,0.16);
+    --line-dark:rgba(23,20,15,0.14);
+    --max:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'IBM Plex Sans',sans-serif;
+    font-weight:400;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{font-family:'Fraunces',serif;font-weight:500;letter-spacing:-0.01em;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 32px;}
+  section{position:relative;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(23,20,15,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    padding-top:20px;padding-bottom:20px;
+  }
+  .brand{font-family:'Fraunces',serif;font-size:19px;font-weight:600;letter-spacing:0.02em;}
+  .brand span{color:var(--brass-soft);}
+  .brand{font-family:'Fraunces',serif;font-size:19px;font-weight:600;letter-spacing:0.02em;}
+  .brand span{color:var(--brass-soft);}
+  .navlinks{display:flex;gap:36px;font-size:14px;color:var(--concrete);}
+  .navlinks a:hover{color:var(--paper);}
+  .navcta{
+    border:1px solid var(--brass-soft);color:var(--brass-soft);
+    padding:9px 18px;font-size:13.5px;border-radius:2px;
+    transition:background .2s, color .2s;
+  }
+  .navcta:hover{background:var(--brass-soft);color:var(--ink);}
+  @media (max-width:760px){ .navlinks{display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:100px 0 120px;
+    border-bottom:1px solid var(--line);
+    background:
+      linear-gradient(var(--line) 1px, transparent 1px) 0 0/100% 64px,
+      var(--ink);
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:64px;align-items:end;
+  }
+  .hero-eyebrow{
+    font-size:15px;color:var(--brass-soft);letter-spacing:0.04em;margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(40px,5.4vw,72px);
+    line-height:1.02;
+    color:var(--paper);
+  }
+  .hero h1 em{font-style:italic;color:var(--brass-soft);font-weight:400;}
+  .hero-sub{
+    margin-top:26px;max-width:46ch;color:var(--concrete);font-size:17px;
+  }
+  .hero-ctas{display:flex;gap:16px;margin-top:38px;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--brass-soft);color:var(--ink);padding:14px 26px;
+    font-size:14.5px;font-weight:500;border-radius:2px;
+  }
+  .btn-primary:hover{background:var(--paper);}
+  .btn-ghost{
+    border:1px solid var(--line);color:var(--paper);padding:14px 26px;
+    font-size:14.5px;border-radius:2px;
+  }
+  .btn-ghost:hover{border-color:var(--brass-soft);color:var(--brass-soft);}
+  .hero-panel{
+    border:1px solid var(--line);padding:28px;
+    display:flex;flex-direction:column;gap:22px;
+  }
+  .hero-panel .stat{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:14px;}
+  .hero-panel .stat:last-child{border-bottom:none;padding-bottom:0;}
+  .stat-num{font-family:'Fraunces',serif;font-size:26px;color:var(--brass-soft);}
+  .stat-label{font-size:12.5px;color:var(--concrete);max-width:16ch;text-align:right;}
+
+  /* ---------- ABOUT ---------- */
+  .about{padding:100px 0;border-bottom:1px solid var(--line);}
+  .about-grid{display:grid;grid-template-columns:0.5fr 1fr;gap:64px;}
+  .kicker{font-size:13px;color:var(--brass-soft);letter-spacing:0.04em;}
+  .about h2{font-size:clamp(28px,3.4vw,40px);margin-top:14px;color:var(--paper);max-width:14ch;}
+  .about-body p{color:var(--concrete);font-size:16px;max-width:56ch;margin-bottom:16px;}
+  .about-body p:last-child{margin-bottom:0;}
+  .about-body strong{color:var(--paper);font-weight:500;}
+
+  /* ---------- SERVICES ---------- */
+  .services{padding:100px 0;border-bottom:1px solid var(--line);background:var(--ink-soft);}
+  .services-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:56px;flex-wrap:wrap;}
+  .services-head h2{font-size:clamp(28px,3.4vw,40px);color:var(--paper);max-width:16ch;}
+  .services-head p{color:var(--concrete);max-width:38ch;font-size:15.5px;}
+  .service-list{border-top:1px solid var(--line);}
+  .service-row{
+    display:grid;grid-template-columns:64px 1fr 1.4fr;gap:24px;
+    padding:30px 0;border-bottom:1px solid var(--line);align-items:baseline;
+  }
+  .service-row .idx{font-family:'Fraunces',serif;color:var(--brass-soft);font-size:15px;}
+  .service-row h3{font-size:22px;color:var(--paper);font-weight:400;}
+  .service-row p{color:var(--concrete);font-size:15px;max-width:52ch;}
+  @media (max-width:700px){ .service-row{grid-template-columns:36px 1fr;} .service-row p{grid-column:2;} }
+
+  /* ---------- PORTFOLIO ---------- */
+  .portfolio{padding:100px 0;border-bottom:1px solid var(--line);}
+  .portfolio-head{margin-bottom:52px;}
+  .portfolio-head h2{font-size:clamp(28px,3.4vw,40px);color:var(--paper);max-width:16ch;}
+  .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+  .proj-card{border:1px solid var(--line);}
+  .proj-img{
+    aspect-ratio:4/3;background:
+      repeating-linear-gradient(135deg, var(--paper-dim) 0 2px, var(--ink-soft) 2px 26px);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--concrete);font-size:13px;letter-spacing:0.03em;
+  }
+  .proj-info{padding:22px;display:flex;justify-content:space-between;gap:12px;align-items:start;}
+  .proj-info h3{font-size:18px;font-weight:500;color:var(--paper);}
+  .proj-info .tag{font-size:12px;color:var(--brass-soft);margin-top:6px;}
+  .proj-status{font-size:11.5px;border:1px solid var(--line);padding:4px 10px;border-radius:20px;color:var(--concrete);white-space:nowrap;}
+  @media (max-width:700px){ .proj-grid{grid-template-columns:1fr;} }
+
+  /* ---------- PROCESS ---------- */
+  .process{padding:100px 0;border-bottom:1px solid var(--line);background:var(--ink-soft);}
+  .process h2{font-size:clamp(28px,3.4vw,40px);color:var(--paper);margin-bottom:52px;max-width:16ch;}
+  .process-list{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;}
+  .process-item{border-top:2px solid var(--brass-soft);padding-top:18px;}
+  .process-num{font-family:'Fraunces',serif;color:var(--brass-soft);font-size:15px;}
+  .process-item h3{font-size:16.5px;color:var(--paper);font-weight:500;margin-top:10px;}
+  .process-item p{font-size:13.5px;color:var(--concrete);margin-top:8px;}
+  @media (max-width:900px){ .process-list{grid-template-columns:1fr 1fr;} }
+  @media (max-width:520px){ .process-list{grid-template-columns:1fr;} }
+
+  /* ---------- TESTIMONIAL ---------- */
+  .testimonial{padding:110px 0;border-bottom:1px solid var(--line);}
+  .testimonial blockquote{
+    font-family:'Fraunces',serif;font-weight:400;font-style:italic;
+    font-size:clamp(24px,3.4vw,34px);max-width:26ch;color:var(--paper);line-height:1.35;
+  }
+  .testimonial cite{
+    display:block;margin-top:28px;font-style:normal;font-size:14px;color:var(--concrete);
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact{padding:100px 0;}
+  .contact-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:64px;}
+  .contact h2{font-size:clamp(28px,3.4vw,40px);color:var(--paper);max-width:14ch;}
+  .contact p.lead{color:var(--concrete);margin-top:18px;max-width:38ch;}
+  .contact-detail{margin-top:36px;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:var(--concrete);}
+  .contact-detail a:hover{color:var(--brass-soft);}
+  form{display:flex;flex-direction:column;gap:18px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  label{font-size:12.5px;color:var(--concrete);display:block;margin-bottom:7px;letter-spacing:0.02em;}
+  input,select{
+    width:100%;background:transparent;border:none;border-bottom:1px solid var(--line);
+    color:var(--paper);font-family:'IBM Plex Sans',sans-serif;font-size:15px;padding:9px 2px;
+  }
+  input:focus,select:focus{outline:none;border-bottom-color:var(--brass-soft);}
+  select option{background:var(--ink);}
+  .submit-btn{
+    align-self:flex-start;margin-top:8px;background:var(--brass-soft);color:var(--ink);
+    padding:14px 30px;font-size:14.5px;font-weight:500;border:none;border-radius:2px;cursor:pointer;
+  }
+  .submit-btn:hover{background:var(--paper);}
+  @media (max-width:760px){ .about-grid,.contact-grid{grid-template-columns:1fr;} .form-row{grid-template-columns:1fr;} .hero-grid{grid-template-columns:1fr;} }
+
+  footer{border-top:1px solid var(--line);padding:32px 0;}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--concrete);}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand">NIVORA <span>DESIGNZ</span></div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="navcta" href="#contact">Get a Consultation</a>
+  </nav>
+</header>
+
+<section class="hero">
+    <div class="wrap hero-grid">
+    <div>
+      <div class="hero-eyebrow">Pan India</div>
+      <h1>Spaces drawn<br>from how you<br><em>actually live.</em></h1>
+      <p class="hero-sub">NIVORA DESIGNZ is an architecture and interior design studio delivering design, 3D visualization, and full turnkey execution — from Mumbai interiors to bungalows across Gujarat.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="#contact">Start a Project</a>
+        <a class="btn-ghost" href="#work">View Our Work</a>
+      </div>
+    </div>
+    <div class="hero-panel">
+      <div class="stat"><span class="stat-num">02</span><span class="stat-label">Live &amp; completed projects</span></div>
+      <div class="stat"><span class="stat-num">2026</span><span class="stat-label">Founded, Mumbai</span></div>
+      <div class="stat"><span class="stat-num">4</span><span class="stat-label">Core services under one roof</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <div class="kicker">About the studio</div>
+      <h2>Built on drawings, not templates</h2>
+    </div>
+    <div class="about-body">
+      <p><strong>NIVORA DESIGNZ</strong> was founded in February 2026 as a design-led studio covering architecture, interiors, 3D visualization, and turnkey execution. We work across two markets: interior and architectural projects in <strong>Mumbai</strong>, and full bungalow developments across <strong>Gujarat</strong>.</p>
+      <p>Every project starts as a drawing and a conversation — how a family actually moves through a home, how a business actually uses an office — before it becomes a floor plan, a render, or a finished room.</p>
+      <p>Our first project, a commercial office interior, was completed in April 2026. We are currently executing a G+1 bungalow in Kutch, Gujarat, managed end-to-end with regular site visits and structured remote oversight.</p>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="services-head">
+      <h2>What we do</h2>
+      <p>Four disciplines, one studio — so a project never loses continuity between the drawing board and the site.</p>
+    </div>
+    <div class="service-list">
+      <div class="service-row">
+        <div class="idx">01</div>
+        <h3>Architectural Design</h3>
+        <p>Ground-up design for homes, bungalows, and commercial spaces — layout planning, structural coordination, and statutory drawings.</p>
+      </div>
+      <div class="service-row">
+        <div class="idx">02</div>
+        <h3>Interior Design</h3>
+        <p>Residential and commercial interiors, from space planning and material selection to lighting and custom furniture design.</p>
+      </div>
+      <div class="service-row">
+        <div class="idx">03</div>
+        <h3>3D Visualization</h3>
+        <p>Photorealistic renders and walkthroughs so clients can see and approve a space before a single wall is built.</p>
+      </div>
+      <div class="service-row">
+        <div class="idx">04</div>
+        <h3>Turnkey Projects</h3>
+        <p>End-to-end execution — design, procurement, contracting, and site management — delivered as one accountable package.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="portfolio" id="work">
+  <div class="wrap">
+    <div class="portfolio-head">
+      <div class="kicker">Selected work</div>
+      <h2>From office floors to bungalow plots</h2>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <div class="proj-img">[ Commercial office — photo ]</div>
+        <div class="proj-info">
+          <div>
+            <h3>Commercial Office Interior</h3>
+            <div class="tag">Mumbai · Completed, April 2026</div>
+          </div>
+          <span class="proj-status">Completed</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-img">[ Kutch bungalow — render / site photo ]</div>
+        <div class="proj-info">
+          <div>
+            <h3>G+1 Bungalow</h3>
+            <div class="tag">Kutch, Gujarat · Turnkey</div>
+          </div>
+          <span class="proj-status">In Progress</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="wrap">
+    <h2>How a project moves</h2>
+    <div class="process-list">
+      <div class="process-item">
+        <div class="process-num">01</div>
+        <h3>Consultation</h3>
+        <p>Understand the site, budget, and how the space needs to work.</p>
+      </div>
+      <div class="process-item">
+        <div class="process-num">02</div>
+        <h3>Design &amp; 3D</h3>
+        <p>Layouts and photorealistic visuals for sign-off before build.</p>
+      </div>
+      <div class="process-item">
+        <div class="process-num">03</div>
+        <h3>Approval</h3>
+        <p>Final drawings, material palette, and cost finalized together.</p>
+      </div>
+      <div class="process-item">
+        <div class="process-num">04</div>
+        <h3>Execution</h3>
+        <p>Site work managed directly, with regular progress updates.</p>
+      </div>
+      <div class="process-item">
+        <div class="process-num">05</div>
+        <h3>Handover</h3>
+        <p>Final walkthrough, snag-list closure, and handover.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial">
+  <div class="wrap">
+    <blockquote>
+      "They understood exactly how our team uses the office — the design just fit, from day one."
+      <cite>— Client, Commercial Office Project, Mumbai</cite>
+    </blockquote>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <div class="kicker">Get in touch</div>
+      <h2>Tell us about your space</h2>
+      <p class="lead">Whether it's an interior in Mumbai or a bungalow in Gujarat, share a few details and we'll get back within a day.</p>
+      <div class="contact-detail">
+        <span>+91 00000 00000</span>
+        <a href="mailto:hello@nivoradesignz.com">hello@nivoradesignz.com</a>
+        <a href="https://instagram.com" target="_blank" rel="noopener">@nivoradesignz on Instagram</a>
+        <span>Mumbai, Maharashtra</span>
+      </div>
+    </div>
+    <form onsubmit="event.preventDefault(); alert('Thanks — this is a placeholder form. Connect it to email or WhatsApp before going live.');">
+      <div class="form-row">
+        <div>
+          <label for="name">Full name</label>
+          <input id="name" type="text" placeholder="Your name" required>
+        </div>
+        <div>
+          <label for="phone">Phone / WhatsApp</label>
+          <input id="phone" type="tel" placeholder="+91" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div>
+          <label for="city">City</label>
+          <select id="city">
+            <option>Mumbai</option>
+            <option>Gujarat</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div>
+          <label for="type">Project type</label>
+          <select id="type">
+            <option>Interior Design</option>
+            <option>Architectural Design</option>
+            <option>Bungalow / Turnkey</option>
+            <option>3D Visualization</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label for="msg">Tell us a bit about the project</label>
+        <input id="msg" type="text" placeholder="Space size, timeline, budget range...">
+      </div>
+      <button class="submit-btn" type="submit">Send Enquiry</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 NIVORA DESIGNZ</span>
+    <span>Architecture · Interior Design · 3D Visualization · Turnkey Projects</span>
+  </div>
+</footer>
+
+</body>
+</html>
